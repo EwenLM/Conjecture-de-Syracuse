@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Soutenance</title>
+    <link href="./style.css" rel="stylesheet" />
+    <script type="text/javascript" src="./tools.js"></script>
+</head>
+
+<body>
+   
+
+    <!-- subject -->
+    <div class="card subject">
+        <p class="h6 font-weight-bold text-center">Découvrer la suite de Syracuse à partir du nombre saisie</p>
+        
+    </div>
+
+    <!-- html wrapper -->
+    <div class="card input">
+        <div class="formulaire">
+            <input type="number" id="start-number" placeholder="Nombre de départ">
+            <button type="button" class="btn btn-primary" onclick="computeSequence()"> 
+                Calculer la suite
+            </button>
+        </div>
+
+        <script type="text/javascript">
+
+
+            /*Fonction qui envoie le nombre saisie dans le tableau "syracuseArray" si il est supérieur à 1
+            *Utilisation d'une boucle while qui itère les valeurs du tableau
+            *Exécute la conjoncture de Syruse en fonction de la valeur de l'index du tableau
+            */
+            function computeSequence() {
+                //Tableau où seront rangés les nombres de la suite
+                let syracuseArray = []
+                //Récupération de la valeur saisie dans l'input texte 
+                currentNumber = document.getElementById("start-number").value
+                currentNumber = parseInt(currentNumber)
+
+                if (currentNumber > 1)
+                    syracuseArray.push(currentNumber)
+                else {
+                    alert("Veuillez saisir un nombre entier supérieur à 1")
+                };
+
+                let i = 0
+                //Condition de sortie de la boucle
+                while (currentNumber !== 1) {
+
+                    //Condition qui execute un calcul différent si la valeur est pair ou impair
+                    //Le résultat du calcul est ensuite ajouté au tableau
+                    if (syracuseArray[i] % 2 == 0) {
+                        newNumber = syracuseArray[i] / 2
+                        syracuseArray.push(newNumber)
+                        i++
+                    }
+                    else {
+                        newNumber = syracuseArray[i] * 3 + 1
+                        syracuseArray.push(newNumber)
+                        i++
+                    }
+                    currentNumber = newNumber
+                }
+                console.log(syracuseArray)
+                displayArray2(syracuseArray)
+            }
+        </script>
+</body>
+
+</html>
